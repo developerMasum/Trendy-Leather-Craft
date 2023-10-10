@@ -45,7 +45,7 @@ const Navbar = () => {
     >
       <div className="flex items-center flex-shrink-0 text-white mr-6 lg:mr-72">
         <img
-          src="https://i.ibb.co/FJ9Y0FF/logo-js.png"
+          src="https://i.ibb.co/YQ8gbz5/leather-craft-logo-icon-design-vector.jpg"
           className={`w-12 h-12 mr-2 p-2 rounded-full ${
             scrolling ? "bg-white bg-opacity-80" : "bg-white bg-opacity-80"
           }`}
@@ -185,7 +185,7 @@ const Navbar = () => {
             <div className="flex items-center space-x-4">
           <FaHeart className="text-2xl cursor-pointer hover:text-gray-400" />
           <FaShoppingCart className="text-2xl cursor-pointer hover:text-gray-400" />
-          <FaUser className="text-2xl cursor-pointer hover:text-gray-400" />
+          <Link href='/login'><FaUser className="text-2xl cursor-pointer hover:text-gray-400" /></Link>
         </div>
       </div>
            
