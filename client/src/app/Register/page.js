@@ -88,7 +88,7 @@ const RegisterPage = () => {
             className="w-full text-lg py-1 px-2 rounded  border outline-none border-gray-600 text-black"
           />
         </div>
-        {/*  Password */}
+        {/*  Password section */}
         <div className="">
           <label className="text-sm flex items-center gap-2">
             Password <span className="text-red-700">*</span>{" "}
