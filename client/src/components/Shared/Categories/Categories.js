@@ -3,9 +3,10 @@ import React, { useState } from "react";
 import CardData from "./CardData";
 import { FaFilter } from "react-icons/fa";
 import Card from "./Card";
+import ReactPaginate from "react-paginate";
 
 const CategoriesPage = () => {
- const cardData = CardData();
+  const cardData = CardData();
 
   const uniqueCategories = [...new Set(cardData.map((card) => card.category))];
 
@@ -14,7 +15,9 @@ const CategoriesPage = () => {
 
   const handleCategorySelect = (category) => {
     if (selectedCategories.includes(category)) {
-      setSelectedCategories(selectedCategories.filter((cat) => cat !== category));
+      setSelectedCategories(
+        selectedCategories.filter((cat) => cat !== category)
+      );
     } else {
       setSelectedCategories([...selectedCategories, category]);
     }
@@ -26,7 +29,8 @@ const CategoriesPage = () => {
 
   const filteredCardData = cardData.filter((card) => {
     const isCategorySelected =
-      selectedCategories.length === 0 || selectedCategories.includes(card.category);
+      selectedCategories.length === 0 ||
+      selectedCategories.includes(card.category);
 
     const isPriceInRange =
       selectedPriceRange === null ||
@@ -42,16 +46,37 @@ const CategoriesPage = () => {
     setIsFilterVisible(!isFilterVisible);
   };
 
-  const handleWishlistClick = (card) => {
-    // Handle adding to the wishlist here
+  const handleClickToView = (card) => {
+    // Handle click to view card
   };
+
+  // Define the number of cards to display per page
+  const cardsPerPage = 12;
+
+  // Calculate the total number of pages
+  const pageCount = Math.ceil(filteredCardData.length / cardsPerPage);
+
+  // Store the currently active page
+  const [currentPage, setCurrentPage] = useState(0);
+
+  // Function to handle page change
+  const handlePageChange = ({ selected }) => {
+    setCurrentPage(selected);
+  };
+
+  // Calculate the start and end indices for the current page
+  const startIndex = currentPage * cardsPerPage;
+  const endIndex = startIndex + cardsPerPage;
+
+  // Slice the filtered data to display only the cards for the current page
+  const cardsToDisplay = filteredCardData.slice(startIndex, endIndex);
 
   return (
     <div className="container px-12">
       <div className="grid grid-rows-3 grid-flow-col gap-4">
         <div className="row-span-3">
-          <div className="flex justify-between p-4 md:hidden ">
-            <FaFilter size={24} onClick={() => handleFilterClick()} />
+          <div className="flex justify-between p-4 md:hidden">
+            <FaFilter size={24} onClick={handleFilterClick} />
           </div>
           <div
             className={`border p-4 ${isFilterVisible ? "" : "hidden md:block"}`}
@@ -253,15 +278,27 @@ const CategoriesPage = () => {
         </div>
         <div className="row-span-3">
           <div className="grid sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 justify-center gap-4">
-            {filteredCardData.map((card, index) => (
-              <Card
-                key={index}
-                card={card}
-                onWishlistClick={handleWishlistClick}
-              />
+            {cardsToDisplay.map((card, index) => (
+              <Card key={index} card={card} />
             ))}
           </div>
         </div>
+      </div>
+      {/* Pagination */}
+      <div className="pagination-container flex justify-center mt-8 mb-24 text-4xl">
+        <ReactPaginate
+          className="flex gap-4"
+          previousLabel={"<"}
+          nextLabel={">"}
+          breakLabel={"..."}
+          pageCount={pageCount}
+          marginPagesDisplayed={2}
+          pageRangeDisplayed={5}
+          onPageChange={handlePageChange}
+          containerClassName={"pagination"}
+          subContainerClassName={"pages pagination"}
+          activeClassName={"active  bg-green-500"}
+        />
       </div>
     </div>
   );

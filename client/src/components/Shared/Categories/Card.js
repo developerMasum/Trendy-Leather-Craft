@@ -1,9 +1,11 @@
 import React, { useState } from "react";
 import StarsRating from "react-awesome-stars-rating";
 
-const Card = ({ card, onWishlistClick }) => {
+const Card = ({ card }) => {
   const [isHovered, setIsHovered] = useState(false);
 
+  const handleClickToView = () => {};
+  const handleShopButton = () => {};
   const handleMouseEnter = () => {
     setIsHovered(true);
   };
@@ -30,18 +32,14 @@ const Card = ({ card, onWishlistClick }) => {
           <p className="text-green-700">{card.price}</p>
         </div>
         <div className="flex justify-center items-center mt-2">
-          <StarsRating
-            className="flex"
-            value={card.rating}
-            isEdit={false} 
-          />
+          <StarsRating className="flex" value={card.rating} isEdit={false} />
         </div>
       </div>
       {isHovered && (
         <div className="absolute inset-0 flex items-center justify-center bg-black bg-opacity-10">
           <button
             className="text-black bg-white font-bold py-2 px-4 rounded-full transition duration-500 transform hover:scale-110"
-            onClick={() => console.log("Click to view")}
+            onClick={() => handleClickToView(card)}
           >
             Click to view
           </button>
@@ -50,7 +48,7 @@ const Card = ({ card, onWishlistClick }) => {
       {isHovered && (
         <button
           className="absolute bottom-2 left-1/2 -translate-x-1/2 bg-white hover:bg-green-700 text-black hover:text-white font-bold py-2 px-4 rounded-full transition duration-500 transform hover:scale-105"
-          onClick={() => onWishlistClick(card)}
+          onClick={() => handleShopButton(card)}
         >
           Shop Now
         </button>
