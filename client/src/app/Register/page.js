@@ -148,7 +148,7 @@ const RegisterPage = () => {
                 maxLength: 18,
                 pattern: /(?=.*[A-Z])(?=.*[!@#$&*])(?=.*[0-9])(?=.*[a-z]).{8}/,
               })}
-              className="w-full    outline-none  text-black"
+              className="w-full  outline-none  text-black"
             />
             <span className="px-4">
               {showConfirmPassword ? (
