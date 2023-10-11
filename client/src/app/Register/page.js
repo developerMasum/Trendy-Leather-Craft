@@ -41,7 +41,7 @@ const RegisterPage = () => {
         <div className="grid grid-cols-2 gap-7 mt-7">
           <div className="">
             <label className="text-sm flex items-center gap-2">
-              First name <span className="text-red-700">*</span>{" "}
+              First Name <span className="text-red-700">*</span>{" "}
             </label>
             <input
               id="firstName"
