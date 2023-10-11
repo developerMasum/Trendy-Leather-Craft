@@ -1,0 +1,69 @@
+import React from "react";
+
+import { BsSearchHeart } from "react-icons/bs";
+import { FaUser, FaHeart, FaShoppingCart } from "react-icons/fa";
+import AdsBar from "./AdsBar";
+
+const Navbar = () => {
+  return (
+    <main>
+     <AdsBar />
+
+      <section>
+      <nav className="bg-gray-100 text-gray-600 p-4">
+      <div className="flex justify-between items-center">
+        {/* 1st div with image */}
+        <div className="flex items-center">
+          <img
+            src="https://i.ibb.co/5Yr6rsR/logolather.png"
+            alt="Logo"
+            className="h-10 w-10 mr-2"
+          />
+          <span className=" font-thin">Trendy Leather Craft</span>
+        </div>
+
+        {/* 2nd div with navigation links and search bar */}
+        <div className="flex items-center space-x-4 text-xs font-bold uppercase">
+        <a href="#" className="hover:text-gray-400">
+            Puja Collection
+          </a>
+          <a href="#" className="hover:text-gray-400">
+            Man
+          </a>
+          <a href="#" className="hover:text-gray-400">
+            Women
+          </a>
+          <a href="#" className="hover:text-gray-400">
+            Kids
+          </a>
+          <a href="#" className="hover:text-gray-400">
+            Accessories
+          </a>
+          
+          <div className="relative">
+            <input
+              type="text"
+              placeholder="Search"
+              className="bg-gray-200 text-gray-400 rounded-md py-2 px-3 focus:outline-none focus:ring-2 focus:ring-blue-200 focus:border-transparent"
+            />
+            <button className="absolute right-2 top-2">
+   <BsSearchHeart />
+
+            </button>
+          </div>
+        </div>
+
+        {/* 3rd div with icons */}
+        <div className="flex items-center space-x-4">
+          <FaHeart className="text-2xl cursor-pointer hover:text-gray-400" />
+          <FaShoppingCart className="text-2xl cursor-pointer hover:text-gray-400" />
+          <FaUser className="text-2xl cursor-pointer hover:text-gray-400" />
+        </div>
+      </div>
+    </nav>
+      </section>
+    </main>
+  );
+};
+
+export default Navbar;
