@@ -3,6 +3,7 @@ import Link from "next/link";
 import React, { useEffect, useState, useContext } from "react";
 import { FaHeart, FaShoppingCart, FaUser } from "react-icons/fa";
 import SearchBar from "./SearchBar";
+import useAuth from "@/hooks/useAuth";
 // import { authContext } from "../../Auth/AuthProvider";
 
 const Navbar = () => {
@@ -14,7 +15,8 @@ const Navbar = () => {
     setDropdownOpen(!isDropdownOpen);
   };
 
-  const { user, logout } = ''; // You should replace this with your actual user context.
+  const { user } = useAuth();
+  console.log('user',user);
 
   const handleLinkClick = (index) => {
     setActiveLink(index);
