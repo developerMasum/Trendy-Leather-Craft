@@ -75,7 +75,7 @@ const RegisterPage = () => {
             placeholder="number"
             className="w-full text-lg py-1 px-2 rounded  border outline-none border-gray-600 text-black"
           />
-        </div>
+        </div>  
         <div className="">
           <label className="text-sm flex items-center gap-2">
             Email <span className="text-red-700">*</span>{" "}
