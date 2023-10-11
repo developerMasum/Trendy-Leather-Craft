@@ -11,6 +11,7 @@
   "dependencies": {
     "next": "13.5.4",
     "react": "^18",
+    "react-awesome-stars-rating": "^0.14.0",
     "react-dom": "^18",
     "react-icons": "^4.11.0"
   },
