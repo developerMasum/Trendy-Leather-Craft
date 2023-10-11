@@ -1,9 +1,10 @@
-"use client"
+"use client";
 import Link from "next/link";
 import React, { useEffect, useState, useContext } from "react";
 import { FaHeart, FaShoppingCart, FaUser } from "react-icons/fa";
 import SearchBar from "./SearchBar";
 import useAuth from "@/hooks/useAuth";
+import toast from "react-hot-toast";
 // import { authContext } from "../../Auth/AuthProvider";
 
 const Navbar = () => {
@@ -11,12 +12,29 @@ const Navbar = () => {
   const [scrolling, setScrolling] = useState(false);
   const [activeLink, setActiveLink] = useState(null);
   const [isDropdownOpen, setDropdownOpen] = useState(false);
+  const [isHovered, setIsHovered] = useState(false);
   const toggleDropdown = () => {
     setDropdownOpen(!isDropdownOpen);
   };
 
-  const { user } = useAuth();
-  console.log('user',user);
+  const { user,logout } = useAuth();
+  const photo = user?.photoURL ? user?.photoURL : <FaUser />
+  // console.log("user", user);
+
+const handleLogOut=async()=>{
+  const toastId = toast.loading("Loading...");
+    try {
+      await logout();
+        toast.dismiss(toastId);
+        toast.success("Logout successfully Completed");
+      
+    } catch (error) {
+      toast.dismiss(toastId);
+      toast.error(error.message || "User not signed in");
+    }
+
+}
+
 
   const handleLinkClick = (index) => {
     setActiveLink(index);
@@ -122,75 +140,95 @@ const Navbar = () => {
             style={{ color: scrolling ? "#00756A" : "white" }}
             onClick={() => handleLinkClick(2)}
           >
-           Kids
+            Kids
           </Link>
 
-
           <div className="relative inline-block">
-        <Link
-          href="/"
-          className={`menu-link block mt-4 sm:w-24 lg:inline-block font-bold lg:mt-0 mr-4 ${
-            isDropdownOpen ? 'active-link' : ''
-          }`}
-          style={{ color: isDropdownOpen ? '#00756A' : 'white' }}
-          onMouseEnter={toggleDropdown}
-          onClick={toggleDropdown}
-        >
-          Accessories
-        </Link>
-        {isDropdownOpen && (
-          <div className="dropdown absolute mt-2 py-2 px-4 shadow-md bg-white text-black">
-            <Link href="/shoes" className="dropdown-item block py-2 border-b-2">
-              Shoes
+            <Link
+              href="/"
+              className={`menu-link block mt-4 sm:w-24 lg:inline-block font-bold lg:mt-0 mr-4 ${
+                isDropdownOpen ? "active-link" : ""
+              }`}
+              style={{ color: isDropdownOpen ? "#00756A" : "white" }}
+              onMouseEnter={toggleDropdown}
+              onClick={toggleDropdown}
+            >
+              Accessories
             </Link>
-            <Link href="/hama" className="dropdown-item block py-2 border-b-2">
-              Hama
-            </Link>
-            <Link href="/yaya" className="dropdown-item block py-2 border-b-2">
-              Yaya
-            </Link>
+            {isDropdownOpen && (
+              <div className="dropdown absolute mt-2 py-2 px-4 shadow-md bg-white text-black">
+                <Link
+                  href="/shoes"
+                  className="dropdown-item block py-2 border-b-2"
+                >
+                  Shoes
+                </Link>
+                <Link
+                  href="/hama"
+                  className="dropdown-item block py-2 border-b-2"
+                >
+                  Hama
+                </Link>
+                <Link
+                  href="/yaya"
+                  className="dropdown-item block py-2 border-b-2"
+                >
+                  Yaya
+                </Link>
+              </div>
+            )}
           </div>
-        )}
-      </div>
 
-        
-         <div  className={`block mt-4 sm:w-24 lg:inline-block font-bold lg:mt-0 mr-4 ${
+          <div
+            className={`block mt-4 sm:w-24 lg:inline-block font-bold lg:mt-0 mr-4 ${
               activeLink === 1 ? "active-link" : ""
             }`}
-            style={{ color: scrolling ? "#00756A" : "white" }}>
-         <SearchBar />
-         </div>
-         
+            style={{ color: scrolling ? "#00756A" : "white" }}
+          >
+            <SearchBar />
+          </div>
         </div>
         <div className="flex-col sm:flex-row justify-start md:lg:flex items-center">
           {user ? (
             <>
               <div className="flex justify-between">
-                <div>
-                  <img
-                    src={user?.photoURL}
-                    alt=""
-                    className="w-9 h-9 rounded-full mx-3"
-                  />
-                </div>
-                <div>
-                  <Link href="/dashboard/jobs">
-                    <button className="px-8 py-2 bg-teal-700 rounded-md hover:bg-teal-700 hover:border border hover:border-cyan-600 text-white md:block">
-                      Dashboard
-                    </button>
-                  </Link>
+                <div className="flex justify-start gap-2 items-center">
+                  <div className="flex items-center space-x-4">
+                    <FaHeart className="text-2xl cursor-pointer hover:text-gray-400" />
+                    <FaShoppingCart className="text-2xl cursor-pointer hover:text-gray-400" />
+                    <div
+                      className="relative"
+                      onMouseEnter={() => setIsHovered(true)}
+                      onClick={() => setIsHovered(false)}
+                    >
+                      <img
+                         src={photo}
+                        alt=""
+                        className="w-9 h-9 rounded-full mx-3"
+                      />
+
+                      {isHovered && (
+                        <div className="absolute bottom-0 top-10 left-1/2 transform -translate-x-1/2">
+                          <button onClick={handleLogOut} className="bg-red-500 text-white py-1 px-2 rounded-lg">
+                            Logout
+                          </button>
+                        </div>
+                      )}
+                    </div>
+                  </div>
                 </div>
               </div>
             </>
           ) : (
             <div className="flex justify-start gap-2 items-center">
-            <div className="flex items-center space-x-4">
-          <FaHeart className="text-2xl cursor-pointer hover:text-gray-400" />
-          <FaShoppingCart className="text-2xl cursor-pointer hover:text-gray-400" />
-          <Link href='/login'><FaUser className="text-2xl cursor-pointer hover:text-gray-400" /></Link>
-        </div>
-      </div>
-           
+              <div className="flex items-center space-x-4">
+                <FaHeart className="text-2xl cursor-pointer hover:text-gray-400" />
+                <FaShoppingCart className="text-2xl cursor-pointer hover:text-gray-400" />
+                <Link href="/login">
+                  <FaUser className="text-2xl cursor-pointer hover:text-gray-400" />
+                </Link>
+              </div>
+            </div>
           )}
         </div>
       </div>
