@@ -5,6 +5,7 @@ import { FaFilter } from "react-icons/fa";
 import Card from "./Card";
 import ReactPaginate from "react-paginate";
 import { ToastContainer } from "react-toastify";
+import FullPageModal from "./FullPageModal ";
 
 const CategoriesPage = () => {
   const cardData = CardData();
@@ -13,6 +14,16 @@ const CategoriesPage = () => {
 
   const [selectedCategories, setSelectedCategories] = useState([]);
   const [selectedPriceRange, setSelectedPriceRange] = useState(null);
+   const [isModalOpen, setIsModalOpen] = useState(false);
+
+  const openModal = () => {
+    setIsModalOpen(true);
+  };
+
+  const closeModal = () => {
+    setIsModalOpen(false);
+  };
+
 
   const handleCategorySelect = (category) => {
     if (selectedCategories.includes(category)) {
@@ -47,10 +58,6 @@ const CategoriesPage = () => {
     setIsFilterVisible(!isFilterVisible);
   };
 
-  const handleClickToView = (card) => {
-
-console.log("Clicked View Button");  };
-
   // Define the number of cards to display per page
   const cardsPerPage = 8;
 
@@ -79,7 +86,9 @@ console.log("Clicked View Button");  };
           <div className="flex justify-between p-4 md:hidden">
             <FaFilter size={24} onClick={handleFilterClick} />
           </div>
-          <div className={`p-4 m-4 ${isFilterVisible ? "" : "hidden md:block"}`}>
+          <div
+            className={`p-4 m-4 ${isFilterVisible ? "" : "hidden md:block"}`}
+          >
             <div className="border p-4">
               <h1 className="my-3 font-bold">Select Categories</h1>
               <ul>
@@ -311,7 +320,19 @@ console.log("Clicked View Button");  };
           />
         </div>
       )}
-      <ToastContainer />
+      {/* <ToastContainer /> */}
+      <div className="container px-12">
+        {/* ... Your existing code ... */}
+        <button
+          onClick={openModal}
+          className="bg-blue-500 text-white py-2 px-4 rounded-lg hover:bg-blue-700"
+        >
+          Open Modal
+        </button>
+
+        <FullPageModal isOpen={isModalOpen} onClose={closeModal} />
+        <ToastContainer />
+      </div>
     </div>
   );
 };

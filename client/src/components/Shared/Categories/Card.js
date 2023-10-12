@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { AiFillHeart } from "react-icons/ai";
 import StarsRating from "react-awesome-stars-rating";
-import { toast, ToastContainer } from "react-toastify";
+import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { FaHeart } from "react-icons/fa";
 
@@ -17,11 +17,9 @@ const Card = ({ card }) => {
     const isAlreadyFavorite = favoriteItems.some((item) => item.id === card.id);
     setIsFavorite(isAlreadyFavorite);
   }, [card.id]);
-
-  const handleClickToView = () => {
-    console.log("handleClickToView");
+  const handleClickToView = (card) => {
+    console.log("Click to view button" + card.id);
   };
-
   const handleShopButton = () => {
     console.log("Click to shop Button");
   };
@@ -52,7 +50,6 @@ const Card = ({ card }) => {
         draggable: true,
       });
     } else {
-      // If already in favorites, remove it
       const cardIndex = favoriteItems.findIndex((item) => item.id === card.id);
       if (cardIndex !== -1) {
         favoriteItems.splice(cardIndex, 1);
@@ -67,21 +64,21 @@ const Card = ({ card }) => {
         });
       }
     }
-
-    // Update the state
     setIsFavorite(!isFavorite);
   };
 
   return (
     <div
-      className="max-w-lg mx-2 my-4 hover:border shadow-2xl transition duration-300 transform hover:scale-105 rounded-lg hover:shadow-xl bg-black"
+      className="max-w-lg mx-2 my-4 hover:border shadow-2xl transition duration-300 transform rounded-lg hover:shadow-xl bg-black"
       onMouseEnter={handleMouseEnter}
       onMouseLeave={handleMouseLeave}
     >
       <img
         src={card.imageSrc}
         alt={card.name}
-        className="w-full p-4 h-80 object-cover rounded-t-lg transition duration-300 transform hover:scale-125"
+        className={`w-full h-80 object-cover rounded-t-lg transition duration-300 transform ${
+          isHovered ? "scale-105" : ""
+        }`}
       />
       <div className="p-4 text-center">
         <h2 className="text-lg font-semibold">{card.name}</h2>
@@ -106,7 +103,7 @@ const Card = ({ card }) => {
 
       {isHovered && showLoveButton && (
         <button
-          className="absolute top-8 left-8 transition duration-500 transform hover:scale-110"
+          className="absolute top-4 left-4 transition duration-500 transform hover:scale-110"
           onClick={() => handleLoveButtonClick(card)}
         >
           {isFavorite ? (
