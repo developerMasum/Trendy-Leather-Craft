@@ -69,7 +69,7 @@ const Card = ({ card }) => {
 
   return (
     <div
-      className="max-w-lg mx-2 my-4 hover:border shadow-2xl transition duration-300 transform rounded-lg hover:shadow-xl bg-black"
+      className="max-w-lg mx-2 my-4 hover:border shadow-2xl transition duration-300 transform rounded-lg hover:shadow-xl bg-black relative overflow-hidden"
       onMouseEnter={handleMouseEnter}
       onMouseLeave={handleMouseLeave}
     >
@@ -77,7 +77,7 @@ const Card = ({ card }) => {
         src={card.imageSrc}
         alt={card.name}
         className={`w-full h-80 object-cover rounded-t-lg transition duration-300 transform ${
-          isHovered ? "scale-105" : ""
+          isHovered ? "scale-125 opacity-40" : ""
         }`}
       />
       <div className="p-4 text-center">
