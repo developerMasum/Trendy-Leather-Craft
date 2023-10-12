@@ -5,7 +5,7 @@ import { toast, ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { FaHeart } from "react-icons/fa";
 
-const Card = ({ card, clickedCardIds, setClickedCardIds }) => {
+const Card = ({ card }) => {
   const [isHovered, setIsHovered] = useState(false);
   const [showLoveButton, setShowLoveButton] = useState(false);
   const [isFavorite, setIsFavorite] = useState(false);
@@ -19,7 +19,7 @@ const Card = ({ card, clickedCardIds, setClickedCardIds }) => {
   }, [card.id]);
 
   const handleClickToView = () => {
-    console.log("Click to view Button");
+    console.log("handleClickToView");
   };
 
   const handleShopButton = () => {
@@ -107,12 +107,15 @@ const Card = ({ card, clickedCardIds, setClickedCardIds }) => {
       {isHovered && showLoveButton && (
         <button
           className="absolute top-8 left-8 transition duration-500 transform hover:scale-110"
-          onClick={() => handleLoveButtonClick(card) }
+          onClick={() => handleLoveButtonClick(card)}
         >
           {isFavorite ? (
             <FaHeart className="text-red-500 hover:text-rose-800" size={30} />
           ) : (
-            <AiFillHeart className="text-stone-400 hover:text-stone-700" size={30} />
+            <AiFillHeart
+              className="text-stone-400 hover:text-stone-700"
+              size={30}
+            />
           )}
         </button>
       )}
