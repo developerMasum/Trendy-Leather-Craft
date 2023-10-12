@@ -48,11 +48,11 @@ const CategoriesPage = () => {
   };
 
   const handleClickToView = (card) => {
-    // Handle click to view card
-  };
+
+console.log("Clicked View Button");  };
 
   // Define the number of cards to display per page
-  const cardsPerPage = 12;
+  const cardsPerPage = 8;
 
   // Calculate the total number of pages
   const pageCount = Math.ceil(filteredCardData.length / cardsPerPage);
@@ -79,202 +79,204 @@ const CategoriesPage = () => {
           <div className="flex justify-between p-4 md:hidden">
             <FaFilter size={24} onClick={handleFilterClick} />
           </div>
-          <div
-            className={`border p-4 ${isFilterVisible ? "" : "hidden md:block"}`}
-          >
-            <h1 className="my-3 font-bold">Select Categories</h1>
-            <ul>
-              {uniqueCategories.map((category, index) => (
-                <li key={index}>
+          <div className={`p-4 m-4 ${isFilterVisible ? "" : "hidden md:block"}`}>
+            <div className="border p-4">
+              <h1 className="my-3 font-bold">Select Categories</h1>
+              <ul>
+                {uniqueCategories.map((category, index) => (
+                  <li key={index}>
+                    <label>
+                      <input
+                        type="checkbox"
+                        checked={selectedCategories.includes(category)}
+                        onChange={() => handleCategorySelect(category)}
+                      />
+                      {category}
+                    </label>
+                  </li>
+                ))}
+              </ul>
+            </div>
+            <div className="border p-4">
+              <h1 className="my-3 font-bold">Select Price Range</h1>
+              <ul>
+                <li>
                   <label>
                     <input
-                      type="checkbox"
-                      checked={selectedCategories.includes(category)}
-                      onChange={() => handleCategorySelect(category)}
+                      type="radio"
+                      name="priceRange"
+                      checked={selectedPriceRange === null}
+                      onChange={() => handlePriceRangeSelect(null)}
                     />
-                    {category}
+                    All
                   </label>
                 </li>
-              ))}
-            </ul>
-            <h1 className="my-3 font-bold">Select Price Range</h1>
-            <ul>
-              <li>
-                <label>
-                  <input
-                    type="radio"
-                    name="priceRange"
-                    checked={selectedPriceRange === null}
-                    onChange={() => handlePriceRangeSelect(null)}
-                  />
-                  All
-                </label>
-              </li>
-              <li>
-                <label>
-                  <input
-                    type="radio"
-                    name="priceRange"
-                    checked={
-                      selectedPriceRange !== null &&
-                      selectedPriceRange[0] === 0 &&
-                      selectedPriceRange[1] === 500
-                    }
-                    onChange={() => handlePriceRangeSelect([0, 500])}
-                  />
-                  0৳ - 500৳
-                </label>
-              </li>
-              <li>
-                <label>
-                  <input
-                    type="radio"
-                    name="priceRange"
-                    checked={
-                      selectedPriceRange !== null &&
-                      selectedPriceRange[0] === 501 &&
-                      selectedPriceRange[1] === 1000
-                    }
-                    onChange={() => handlePriceRangeSelect([501, 1000])}
-                  />
-                  501৳ - 1000৳
-                </label>
-              </li>
-              <li>
-                <label>
-                  <input
-                    type="radio"
-                    name="priceRange"
-                    checked={
-                      selectedPriceRange !== null &&
-                      selectedPriceRange[0] === 1001 &&
-                      selectedPriceRange[1] === 2000
-                    }
-                    onChange={() => handlePriceRangeSelect([1001, 2000])}
-                  />
-                  1001৳ - 2000৳
-                </label>
-              </li>
-              <li>
-                <label>
-                  <input
-                    type="radio"
-                    name="priceRange"
-                    checked={
-                      selectedPriceRange !== null &&
-                      selectedPriceRange[0] === 2001 &&
-                      selectedPriceRange[1] === 3000
-                    }
-                    onChange={() => handlePriceRangeSelect([2001, 3000])}
-                  />
-                  2001৳ - 3000৳
-                </label>
-              </li>
-              <li>
-                <label>
-                  <input
-                    type="radio"
-                    name="priceRange"
-                    checked={
-                      selectedPriceRange !== null &&
-                      selectedPriceRange[0] === 3001 &&
-                      selectedPriceRange[1] === 4000
-                    }
-                    onChange={() => handlePriceRangeSelect([3001, 4000])}
-                  />
-                  3001৳ - 4000৳
-                </label>
-              </li>
-              <li>
-                <label>
-                  <input
-                    type="radio"
-                    name="priceRange"
-                    checked={
-                      selectedPriceRange !== null &&
-                      selectedPriceRange[0] === 4001 &&
-                      selectedPriceRange[1] === 5000
-                    }
-                    onChange={() => handlePriceRangeSelect([4001, 5000])}
-                  />
-                  4001৳ - 5000৳
-                </label>
-              </li>
-              <li>
-                <label>
-                  <input
-                    type="radio"
-                    name="priceRange"
-                    checked={
-                      selectedPriceRange !== null &&
-                      selectedPriceRange[0] === 5001 &&
-                      selectedPriceRange[1] === 6000
-                    }
-                    onChange={() => handlePriceRangeSelect([5001, 6000])}
-                  />
-                  5001৳ - 6000৳
-                </label>
-              </li>
-              <li>
-                <label>
-                  <input
-                    type="radio"
-                    name="priceRange"
-                    checked={
-                      selectedPriceRange !== null &&
-                      selectedPriceRange[0] === 6001 &&
-                      selectedPriceRange[1] === 7000
-                    }
-                    onChange={() => handlePriceRangeSelect([6001, 7000])}
-                  />
-                  6001৳ - 7000৳
-                </label>
-              </li>
-              <li>
-                <label>
-                  <input
-                    type="radio"
-                    name="priceRange"
-                    checked={
-                      selectedPriceRange !== null &&
-                      selectedPriceRange[0] === 7001 &&
-                      selectedPriceRange[1] === 8000
-                    }
-                    onChange={() => handlePriceRangeSelect([7001, 8000])}
-                  />
-                  7001৳ - 8000৳
-                </label>
-              </li>
-              <li>
-                <label>
-                  <input
-                    type="radio"
-                    name="priceRange"
-                    checked={
-                      selectedPriceRange !== null &&
-                      selectedPriceRange[0] === 8001 &&
-                      selectedPriceRange[1] === 10000
-                    }
-                    onChange={() => handlePriceRangeSelect([8001, 10000])}
-                  />
-                  8001৳ - 10000৳
-                </label>
-              </li>
-              <li>
-                <label>
-                  <input
-                    type="radio"
-                    name="priceRange"
-                    checked={
-                      selectedPriceRange !== null &&
-                      selectedPriceRange[0] === 10001
-                    }
-                    onChange={() => handlePriceRangeSelect([10001, 100000])}
-                  />
-                  10000৳+
-                </label>
-              </li>
-            </ul>
+                <li>
+                  <label>
+                    <input
+                      type="radio"
+                      name="priceRange"
+                      checked={
+                        selectedPriceRange !== null &&
+                        selectedPriceRange[0] === 0 &&
+                        selectedPriceRange[1] === 500
+                      }
+                      onChange={() => handlePriceRangeSelect([0, 500])}
+                    />
+                    0৳ - 500৳
+                  </label>
+                </li>
+                <li>
+                  <label>
+                    <input
+                      type="radio"
+                      name="priceRange"
+                      checked={
+                        selectedPriceRange !== null &&
+                        selectedPriceRange[0] === 501 &&
+                        selectedPriceRange[1] === 1000
+                      }
+                      onChange={() => handlePriceRangeSelect([501, 1000])}
+                    />
+                    501৳ - 1000৳
+                  </label>
+                </li>
+                <li>
+                  <label>
+                    <input
+                      type="radio"
+                      name="priceRange"
+                      checked={
+                        selectedPriceRange !== null &&
+                        selectedPriceRange[0] === 1001 &&
+                        selectedPriceRange[1] === 2000
+                      }
+                      onChange={() => handlePriceRangeSelect([1001, 2000])}
+                    />
+                    1001৳ - 2000৳
+                  </label>
+                </li>
+                <li>
+                  <label>
+                    <input
+                      type="radio"
+                      name="priceRange"
+                      checked={
+                        selectedPriceRange !== null &&
+                        selectedPriceRange[0] === 2001 &&
+                        selectedPriceRange[1] === 3000
+                      }
+                      onChange={() => handlePriceRangeSelect([2001, 3000])}
+                    />
+                    2001৳ - 3000৳
+                  </label>
+                </li>
+                <li>
+                  <label>
+                    <input
+                      type="radio"
+                      name="priceRange"
+                      checked={
+                        selectedPriceRange !== null &&
+                        selectedPriceRange[0] === 3001 &&
+                        selectedPriceRange[1] === 4000
+                      }
+                      onChange={() => handlePriceRangeSelect([3001, 4000])}
+                    />
+                    3001৳ - 4000৳
+                  </label>
+                </li>
+                <li>
+                  <label>
+                    <input
+                      type="radio"
+                      name="priceRange"
+                      checked={
+                        selectedPriceRange !== null &&
+                        selectedPriceRange[0] === 4001 &&
+                        selectedPriceRange[1] === 5000
+                      }
+                      onChange={() => handlePriceRangeSelect([4001, 5000])}
+                    />
+                    4001৳ - 5000৳
+                  </label>
+                </li>
+                <li>
+                  <label>
+                    <input
+                      type="radio"
+                      name="priceRange"
+                      checked={
+                        selectedPriceRange !== null &&
+                        selectedPriceRange[0] === 5001 &&
+                        selectedPriceRange[1] === 6000
+                      }
+                      onChange={() => handlePriceRangeSelect([5001, 6000])}
+                    />
+                    5001৳ - 6000৳
+                  </label>
+                </li>
+                <li>
+                  <label>
+                    <input
+                      type="radio"
+                      name="priceRange"
+                      checked={
+                        selectedPriceRange !== null &&
+                        selectedPriceRange[0] === 6001 &&
+                        selectedPriceRange[1] === 7000
+                      }
+                      onChange={() => handlePriceRangeSelect([6001, 7000])}
+                    />
+                    6001৳ - 7000৳
+                  </label>
+                </li>
+                <li>
+                  <label>
+                    <input
+                      type="radio"
+                      name="priceRange"
+                      checked={
+                        selectedPriceRange !== null &&
+                        selectedPriceRange[0] === 7001 &&
+                        selectedPriceRange[1] === 8000
+                      }
+                      onChange={() => handlePriceRangeSelect([7001, 8000])}
+                    />
+                    7001৳ - 8000৳
+                  </label>
+                </li>
+                <li>
+                  <label>
+                    <input
+                      type="radio"
+                      name="priceRange"
+                      checked={
+                        selectedPriceRange !== null &&
+                        selectedPriceRange[0] === 8001 &&
+                        selectedPriceRange[1] === 10000
+                      }
+                      onChange={() => handlePriceRangeSelect([8001, 10000])}
+                    />
+                    8001৳ - 10000৳
+                  </label>
+                </li>
+                <li>
+                  <label>
+                    <input
+                      type="radio"
+                      name="priceRange"
+                      checked={
+                        selectedPriceRange !== null &&
+                        selectedPriceRange[0] === 10001
+                      }
+                      onChange={() => handlePriceRangeSelect([10001, 100000])}
+                    />
+                    10000৳+
+                  </label>
+                </li>
+              </ul>
+            </div>
           </div>
         </div>
         <div className="row-span-3">
@@ -283,7 +285,7 @@ const CategoriesPage = () => {
               No data in this category or price range.
             </p>
           ) : (
-            <div className="grid sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 justify-center gap-4">
+            <div className="grid sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 justify-center">
               {cardsToDisplay.map((card, index) => (
                 <Card key={index} card={card} />
               ))}
@@ -309,7 +311,7 @@ const CategoriesPage = () => {
           />
         </div>
       )}
-      <ToastContainer/>
+      <ToastContainer />
     </div>
   );
 };
