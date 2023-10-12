@@ -1,4 +1,5 @@
 // import Banner from "@/components/Home/Banner";
+import Collection from "@/components/Home/Collection";
 import Slider from "./Slider";
 
 
@@ -6,6 +7,7 @@ import Slider from "./Slider";
   return (
     <main>
       <Slider />
+      <Collection />
     </main>
   );
 }
