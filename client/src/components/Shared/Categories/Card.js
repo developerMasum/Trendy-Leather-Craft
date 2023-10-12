@@ -1,6 +1,8 @@
 import React, { useState } from "react";
 import { FaHeart } from "react-icons/fa";
 import StarsRating from "react-awesome-stars-rating";
+import { toast, ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 const Card = ({ card, clickedCardIds, setClickedCardIds }) => {
   const [isHovered, setIsHovered] = useState(false);
@@ -25,7 +27,14 @@ const Card = ({ card, clickedCardIds, setClickedCardIds }) => {
   };
 
   const handleLoveButtonClick = (card) => {
-    console.log("Add to favorite" +" "+card.name);
+    toast.success(`Added successfully as Favorite`, {
+      position: "top-center",
+      autoClose: 3000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+    });
   };
 
   return (
@@ -62,11 +71,10 @@ const Card = ({ card, clickedCardIds, setClickedCardIds }) => {
       {isHovered && showLoveButton && (
         <button
           className="absolute top-8 left-8 text-black hover:text-red-500 transition duration-500 transform hover:scale-110"
-          onClick={()=>handleLoveButtonClick(card)}
+          onClick={() => handleLoveButtonClick(card)}
         >
           <FaHeart size={30} />
         </button>
-        
       )}
       {isHovered && (
         <button

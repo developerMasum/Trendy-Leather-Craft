@@ -4,6 +4,7 @@ import CardData from "./CardData";
 import { FaFilter } from "react-icons/fa";
 import Card from "./Card";
 import ReactPaginate from "react-paginate";
+import { ToastContainer } from "react-toastify";
 
 const CategoriesPage = () => {
   const cardData = CardData();
@@ -308,6 +309,7 @@ const CategoriesPage = () => {
           />
         </div>
       )}
+      <ToastContainer/>
     </div>
   );
 };
