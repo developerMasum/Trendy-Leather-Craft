@@ -277,29 +277,37 @@ const CategoriesPage = () => {
           </div>
         </div>
         <div className="row-span-3">
-          <div className="grid sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 justify-center gap-4">
-            {cardsToDisplay.map((card, index) => (
-              <Card key={index} card={card} />
-            ))}
-          </div>
+          {filteredCardData.length === 0 ? (
+            <p className="text-red-500 text-3xl font-semibold text-center">
+              No data in this category or price range.
+            </p>
+          ) : (
+            <div className="grid sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 justify-center gap-4">
+              {cardsToDisplay.map((card, index) => (
+                <Card key={index} card={card} />
+              ))}
+            </div>
+          )}
         </div>
       </div>
       {/* Pagination */}
-      <div className="pagination-container flex justify-center mt-8 mb-24 text-4xl">
-        <ReactPaginate
-          className="flex gap-4"
-          previousLabel={"<"}
-          nextLabel={">"}
-          breakLabel={"..."}
-          pageCount={pageCount}
-          marginPagesDisplayed={2}
-          pageRangeDisplayed={5}
-          onPageChange={handlePageChange}
-          containerClassName={"pagination"}
-          subContainerClassName={"pages pagination"}
-          activeClassName={"active  bg-green-500"}
-        />
-      </div>
+      {filteredCardData.length > 12 && (
+        <div className="pagination-container flex justify-center mt-8 mb-24 text-4xl">
+          <ReactPaginate
+            className="flex gap-4"
+            previousLabel={"<"}
+            nextLabel={">"}
+            breakLabel={"..."}
+            pageCount={pageCount}
+            marginPagesDisplayed={2}
+            pageRangeDisplayed={5}
+            onPageChange={handlePageChange}
+            containerClassName={"pagination"}
+            subContainerClassName={"pages pagination"}
+            activeClassName={"active bg-green-500"}
+          />
+        </div>
+      )}
     </div>
   );
 };

@@ -1,17 +1,31 @@
 import React, { useState } from "react";
+import { FaHeart } from "react-icons/fa";
 import StarsRating from "react-awesome-stars-rating";
 
-const Card = ({ card }) => {
+const Card = ({ card, clickedCardIds, setClickedCardIds }) => {
   const [isHovered, setIsHovered] = useState(false);
+  const [showLoveButton, setShowLoveButton] = useState(false);
 
-  const handleClickToView = () => {};
-  const handleShopButton = () => {};
+  const handleClickToView = () => {
+    console.log("Click to view Button");
+  };
+
+  const handleShopButton = () => {
+    console.log("Click to shop Button");
+  };
+
   const handleMouseEnter = () => {
     setIsHovered(true);
+    setShowLoveButton(true);
   };
 
   const handleMouseLeave = () => {
     setIsHovered(false);
+    setShowLoveButton(false);
+  };
+
+  const handleLoveButtonClick = (card) => {
+    console.log("Add to favorite" +" "+card.name);
   };
 
   return (
@@ -38,16 +52,25 @@ const Card = ({ card }) => {
       {isHovered && (
         <div className="absolute inset-0 flex items-center justify-center bg-black bg-opacity-10">
           <button
-            className="text-black bg-white font-bold py-2 px-4 rounded-full transition duration-500 transform hover:scale-110"
+            className="text-black bg-white font-bold py-2 px-4 rounded-md transition duration-500 transform hover:scale-110"
             onClick={() => handleClickToView(card)}
           >
             Click to view
           </button>
         </div>
       )}
+      {isHovered && showLoveButton && (
+        <button
+          className="absolute top-8 left-8 text-black hover:text-red-500 transition duration-500 transform hover:scale-110"
+          onClick={()=>handleLoveButtonClick(card)}
+        >
+          <FaHeart size={30} />
+        </button>
+        
+      )}
       {isHovered && (
         <button
-          className="absolute bottom-2 left-1/2 -translate-x-1/2 bg-white hover:bg-green-700 text-black hover:text-white font-bold py-2 px-4 rounded-full transition duration-500 transform hover:scale-105"
+          className="absolute bottom-2 left-1/2 -translate-x-1/2 bg-white hover:bg-red-700 text-black hover:text-white font-bold py-2 px-4 rounded-md transition duration-500 transform hover:scale-105"
           onClick={() => handleShopButton(card)}
         >
           Shop Now
