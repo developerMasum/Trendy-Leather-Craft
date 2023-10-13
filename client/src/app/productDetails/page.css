@@ -1,0 +1,134 @@
+/* .img-container {
+  max-width: 350px;
+  height: 350px;
+  border-radius: 5px;
+  overflow: hidden;
+  position: relative;
+  box-sizing: inherit;
+}
+.img-container img {
+  width: 100%;
+  display: block;
+}
+.img-container:hover {
+  cursor: zoom-in;
+}
+.img-container span {
+  z-index: 5;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background: rgba(0, 0, 0, 0.6);
+  display: block;
+  padding: 0.5rem 1rem;
+  font-family: sans-serif;
+  font-weight: bold;
+  color: #eee;
+  text-align: center;
+}
+.img-container:hover span {
+  display: none;
+}
+.list-products{
+  list-style: none;
+  display: flex;
+  justify-content: space-between;
+  max-width: 350px;
+  margin-top: 1rem;
+}
+
+.list-products li{
+    width: 22%;
+    cursor: pointer;
+    overflow: hidden;
+    border-radius: 3px;
+    transition: all 0.15s linear;
+}
+img{
+    width: 100%;
+}
+
+.list-products li.active{
+    padding: 0.15rem;
+    border: 1px solid #00aeff;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.15);
+} */
+
+/* .img-container {
+  max-width: 350px;
+  height: 350px;
+  border-radius: 5px;
+  overflow: hidden;
+  position: relative;
+  box-sizing: inherit;
+} */
+/* .img-container img {
+  width: 100%;
+  display: block;
+  position: absolute;
+  transition: all 0.3s linear;
+} */
+.img-container {
+  max-width: 350px;
+  height: 350px;
+  border-radius: 5px;
+  overflow: hidden;
+  position: relative;
+  box-sizing: inherit;
+}
+
+.img-container img {
+  width: 100%;
+  display: block;
+  position: absolute;
+  top: 0;
+  left: 0;
+  transform-origin: top left;
+  transition: transform 0.3s linear;
+}
+
+.img-container:hover {
+cursor: zoom-in;
+}
+.img-container span {
+z-index: 5;
+position: absolute;
+top: 50%;
+left: 50%;
+transform: translate(-50%, -50%);
+background: rgba(0, 0, 0, 0.6);
+display: block;
+padding: 0.5rem 1rem;
+font-family: sans-serif;
+font-weight: bold;
+color: #eee;
+text-align: center;
+}
+.img-container:hover span {
+display: none;
+}
+.list-products {
+list-style: none;
+display: flex;
+justify-content: space-between;
+max-width: 350px;
+margin-top: 1rem;
+}
+
+.list-products li {
+width: 22%;
+cursor: pointer;
+overflow: hidden;
+border-radius: 3px;
+transition: all 0.15s linear;
+}
+img {
+width: 100%;
+}
+
+.list-products li.active {
+padding: 0.15rem;
+border: 1px solid #00aeff;
+box-shadow: 0 0 10px rgba(0, 0, 0, 0.15);
+}
