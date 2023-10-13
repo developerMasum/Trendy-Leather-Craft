@@ -5,7 +5,6 @@ import { FaFilter } from "react-icons/fa";
 import Card from "./Card";
 import ReactPaginate from "react-paginate";
 import { ToastContainer } from "react-toastify";
-import FullPageModal from "./FullPageModal ";
 
 const CategoriesPage = () => {
   const cardData = CardData();
@@ -14,16 +13,6 @@ const CategoriesPage = () => {
 
   const [selectedCategories, setSelectedCategories] = useState([]);
   const [selectedPriceRange, setSelectedPriceRange] = useState(null);
-   const [isModalOpen, setIsModalOpen] = useState(false);
-
-  const openModal = () => {
-    setIsModalOpen(true);
-  };
-
-  const closeModal = () => {
-    setIsModalOpen(false);
-  };
-
 
   const handleCategorySelect = (category) => {
     if (selectedCategories.includes(category)) {
@@ -320,19 +309,7 @@ const CategoriesPage = () => {
           />
         </div>
       )}
-      {/* <ToastContainer /> */}
-      <div className="container px-12">
-        {/* ... Your existing code ... */}
-        <button
-          onClick={openModal}
-          className="bg-blue-500 text-white py-2 px-4 rounded-lg hover:bg-blue-700"
-        >
-          Open Modal
-        </button>
-
-        <FullPageModal isOpen={isModalOpen} onClose={closeModal} />
-        <ToastContainer />
-      </div>
+      <ToastContainer />
     </div>
   );
 };

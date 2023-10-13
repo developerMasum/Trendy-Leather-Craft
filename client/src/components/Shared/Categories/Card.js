@@ -4,12 +4,13 @@ import StarsRating from "react-awesome-stars-rating";
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { FaHeart } from "react-icons/fa";
+import Modal from "./Modal";
 
 const Card = ({ card }) => {
   const [isHovered, setIsHovered] = useState(false);
   const [showLoveButton, setShowLoveButton] = useState(false);
   const [isFavorite, setIsFavorite] = useState(false);
-
+  const [isModalOpen, setIsModalOpen] = useState(false); 
   useEffect(() => {
     // Check if the item is in local storage when the component mounts
     const favoriteItems =
@@ -17,11 +18,14 @@ const Card = ({ card }) => {
     const isAlreadyFavorite = favoriteItems.some((item) => item.id === card.id);
     setIsFavorite(isAlreadyFavorite);
   }, [card.id]);
+
   const handleClickToView = (card) => {
-    console.log("Click to view button" + card.id);
+    openModal(true); // Open the modal
   };
+
   const handleShopButton = () => {
     console.log("Click to shop Button");
+
   };
 
   const handleMouseEnter = () => {
@@ -67,6 +71,15 @@ const Card = ({ card }) => {
     setIsFavorite(!isFavorite);
   };
 
+ const openModal = () => {
+   setIsModalOpen(true);
+ };
+
+ // Define closeModal within the component scope
+ const closeModal = () => {
+   setIsModalOpen(false);
+ };
+
   return (
     <div
       className="max-w-lg mx-2 my-4 hover:border shadow-2xl transition duration-300 transform rounded-lg hover:shadow-xl bg-black relative overflow-hidden"
@@ -77,7 +90,7 @@ const Card = ({ card }) => {
         src={card.imageSrc}
         alt={card.name}
         className={`w-full h-80 object-cover rounded-t-lg transition duration-300 transform ${
-          isHovered ? "scale-125 opacity-40" : ""
+          isHovered ? "scale-105 opacity-40" : ""
         }`}
       />
       <div className="p-4 text-center">
@@ -90,6 +103,7 @@ const Card = ({ card }) => {
           <StarsRating className="flex" value={card.rating} isEdit={false} />
         </div>
       </div>
+
       {isHovered && (
         <div className="absolute inset-0 flex items-center justify-center  bg-opacity-10">
           <button
@@ -125,6 +139,7 @@ const Card = ({ card }) => {
           Shop Now
         </button>
       )}
+        <Modal card={card} isOpen={isModalOpen} onClose={closeModal} />
     </div>
   );
 };
