@@ -6,6 +6,9 @@ import { useForm } from 'react-hook-form';
 import toast from 'react-hot-toast';
 import useAuth from '@/hooks/useAuth';
 import Link from 'next/link';
+import createJWT from '@/utils/createJWT';
+import { useSearchParams } from 'next/navigation';
+import { useRouter } from 'next/navigation';
 
 
 
@@ -17,15 +20,23 @@ const LoginPage = () => {
         formState: { errors },
     } = useForm();
     const { signIn } = useAuth();
+    const router = useRouter()
+    const search = useSearchParams()
+    const from = search.get('redirectUrl') || '/';
+    console.log(from);
+    const {replace} = useRouter()
+    // console.log(from);
     const onSubmit = async (data) => {
         const { email, password } = data;
 
         const toastId = toast.loading("Loading...");
         try {
             await signIn(email, password);
-
-            toast.dismiss(toastId);
-            toast.success("User signed in successfully");
+           await createJWT({email})
+           toast.dismiss(toastId);
+           toast.success("User signed in successfully");
+           replace('/dashboard')
+        // router.push('/dashboard')
         } catch (error) {
             toast.dismiss(toastId);
             toast.error(error.message || "User not signed in");
@@ -89,7 +100,7 @@ const LoginPage = () => {
                     <h2 className='mt-4 flex justify-center'>_____________________ <span className='mx-2 mt-1'>Or</span> _____________________</h2>
 
                     <div>
-                        <SocialLogin></SocialLogin>
+                        <SocialLogin from={from}></SocialLogin>
                     </div>
 
                 </div>

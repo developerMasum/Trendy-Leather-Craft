@@ -1,22 +1,32 @@
-import React from 'react';
+import React, { startTransition } from 'react';
 import fb from '../../assests/fb.png'
 import google from '../../assests/google.png'
 import toast from 'react-hot-toast';
 import useAuth from '@/hooks/useAuth';
+import createJWT from '@/utils/createJWT';
+// import { useSearchParams } from 'next/navigation';
+import { useRouter } from 'next/navigation';
 
-const SocialLogin = () => {
-    const { googleLogin } = useAuth();
+const SocialLogin = ({from}) => {
+  const { googleLogin } = useAuth();
+  const { replace, refresh } = useRouter();
+
     const handleGoogleLogin= async()=>{
-        const toastId = toast.loading("Loading...");
-    try {
-      const { user } = await googleLogin();
+      const toastId = toast.loading("Loading...");
+      try {
+        const { user } = await googleLogin();
+        await createJWT({ email: user.email });
+        startTransition(() => {
+          refresh();
+          // replace('/');
+          replace(from)
+          toast.dismiss(toastId);
+          toast.success("User signed in successfully");
+        });
+      } catch (error) {
         toast.dismiss(toastId);
-        toast.success("User signed in successfully");
-      
-    } catch (error) {
-      toast.dismiss(toastId);
-      toast.error(error.message || "User not signed in");
-    }
+        toast.error(error.message || "User not signed in");
+      }
     }
     return (
         <div className='flex justify-around gap-3 mt-5'>

@@ -1,10 +1,11 @@
 "use client";
 import Link from "next/link";
-import React, { useEffect, useState, useContext } from "react";
+import React, { useEffect, useState, useContext, startTransition } from "react";
 import { FaHeart, FaShoppingCart, FaUser } from "react-icons/fa";
 import SearchBar from "./SearchBar";
 import useAuth from "@/hooks/useAuth";
 import toast from "react-hot-toast";
+import { usePathname, useRouter } from "next/navigation";
 // import { authContext } from "../../Auth/AuthProvider";
 
 const Navbar = () => {
@@ -18,6 +19,8 @@ const Navbar = () => {
   };
 
   const { user,logout } = useAuth();
+  const { replace, refresh } = useRouter();
+  const path = usePathname();
   const photo = user?.photoURL ? user?.photoURL : <FaUser />
   // console.log("user", user);
 
@@ -25,8 +28,18 @@ const handleLogOut=async()=>{
   const toastId = toast.loading("Loading...");
     try {
       await logout();
-        toast.dismiss(toastId);
-        toast.success("Logout successfully Completed");
+      const res = await fetch("/api/auth/logout", {
+        method: "POST",
+      });
+      await res.json();
+      if (path.includes("/dashboard")) {
+        replace(`/login?redirectUrl=${path}`);
+      }
+      toast.dismiss(toastId);
+      toast.success("Successfully logout!");
+      startTransition(() => {
+        refresh();
+      });
       
     } catch (error) {
       toast.dismiss(toastId);
@@ -113,14 +126,14 @@ const handleLogOut=async()=>{
             Event
           </Link>
           <Link
-            href="/details-marketplace"
+            href="/add"
             className={`block mt-4 sm:w-12 lg:inline-block font-bold lg:mt-0 mr-4 ${
               activeLink === 0 ? "active-link" : ""
             }`}
             style={{ color: scrolling ? "#00756A" : "white" }}
             onClick={() => handleLinkClick(0)}
           >
-            Man
+            ADD
           </Link>
           <Link
             href="/single-pay"

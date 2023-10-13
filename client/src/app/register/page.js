@@ -1,6 +1,9 @@
 "use client";
 import useAuth from "@/hooks/useAuth";
+import createJWT from "@/utils/createJWT";
 import Link from "next/link";
+import { useSearchParams } from "next/navigation";
+import { useRouter } from 'next/navigation';
 import React, { useState } from "react";
 import { useForm } from "react-hook-form";
 import toast from "react-hot-toast";
@@ -26,6 +29,10 @@ const RegisterPage = () => {
   } = useForm();
 
   const { createUser } = useAuth();
+  const search = useSearchParams();
+  const from = search.get("redirectUrl") || "/";
+  const { replace, refresh } = useRouter();
+
 
   const watchedFields = watch();
   const password = watch("password");
@@ -59,13 +66,14 @@ const RegisterPage = () => {
     // console.log(data);
 
     const { email, password } = data;
-console.log(data);
+    console.log(data);
     const toastId = toast.loading("Loading...");
     try {
       await createUser(email, password);
-
+      await createJWT({ email });
       toast.dismiss(toastId);
       toast.success("User signed in successfully");
+      replace(from);
     } catch (error) {
       toast.dismiss(toastId);
       toast.error(error.message || "User not signed in");
