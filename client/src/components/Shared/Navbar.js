@@ -6,7 +6,7 @@ import SearchBar from "./SearchBar";
 import useAuth from "@/hooks/useAuth";
 // import { authContext } from "../../Auth/AuthProvider";
 
-const Navbar = () => {
+const Navbar = () => {;
   const [isOpen, setIsOpen] = useState(false);
   const [scrolling, setScrolling] = useState(false);
   const [activeLink, setActiveLink] = useState(null);
