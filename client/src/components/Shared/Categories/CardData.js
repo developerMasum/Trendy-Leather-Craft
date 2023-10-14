@@ -767,7 +767,7 @@ const CardData = () => {
       id: 84,
       name: "Leather Jacket for men",
       category: "Jacket",
-      previousPrice: "7500৳",
+      previousPrice: "7600৳",
       price: "7100৳",
       imageSrc: "https://i.ibb.co/bNZ640v/samo-puja-2023-ot-26-9b05.png",
       rating: 3.6,
