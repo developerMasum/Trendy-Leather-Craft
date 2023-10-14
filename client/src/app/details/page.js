@@ -1,13 +1,13 @@
 "use client";
-import { useRouter } from 'next/router';
+// import { useRouter } from 'next/router';
 import './page.css'
 import React, { useEffect, useRef, useState } from "react";
 import { FiHeart } from "react-icons/fi";
 import ReactImageZoom from "react-image-zoom";
 const detailsPage = () => {
-  const router = useRouter();
-  const { id } = router.query;
-  console.log('iddddd',id);
+  // const router = useRouter();
+  // const { id } = router.query;
+  // console.log('iddddd',id);
   const [count, setCount] = useState(1);
   const [activeSizeTab, setActiveSizeTab] = useState(1);
   const [modal, setModal] = useState(false);

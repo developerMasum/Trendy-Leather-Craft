@@ -1,16 +1,13 @@
 import getCategories from '@/utils/getCategories';
 import React from 'react';
+import Blog from './blog';
 
 const CategoriesPage = async() => {
     const categories = await getCategories();
     console.log("first clg",categories);
     return (
         <div>
-        {
-            categories.map((c) => (
-                <p key={c._id}>{c.name}</p> 
-            ))
-        }
+ <p></p>
     </div>
     );
 };
