@@ -134,7 +134,7 @@ const Card = ({ card, handleClickToView }) => {
       )}
       <div className="mt-5">
         {isHovered && (
-          <Link href='/details'>
+          <Link href={`/test/${card.id}`}>
             <button
               className="absolute bottom-1 w-3/4 left-1/2 cursor-pointer -translate-x-1/2  text-sm hover:bg-green-800 bg-red-700 text-white font-bold py-1 px-4 rounded-md transition duration-500 transform hover:scale-105"
               onClick={() => handleShopButton(card)}
