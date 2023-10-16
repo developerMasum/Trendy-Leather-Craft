@@ -408,6 +408,6 @@ const PopularCategory = () => {
       </div>
     </div>
   );
-};
+}
 
 export default PopularCategory;
