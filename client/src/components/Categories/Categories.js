@@ -1,5 +1,5 @@
 "use client";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import CardData from "./CardData";
 import { FaFilter } from "react-icons/fa";
 import Card from "./Card";
@@ -7,7 +7,30 @@ import ReactPaginate from "react-paginate";
 import { ToastContainer } from "react-toastify";
 
 const CategoriesPage = () => {
-  const cardData = CardData();
+  const [cardData,setData] = useState([])
+    useEffect(() => {
+        // Define the data you want to send in the request body (if needed)
+        const requestData = {
+          // Your request data here
+        };
+      
+        fetch('/api/category', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json', // Set the appropriate content type if sending JSON
+          },
+          body: JSON.stringify(requestData), // Convert your request data to JSON
+        })
+          .then((response) => response.json())
+          .then((data) => {
+            setData(data.data)
+            console.log(data);
+            // You can now do something with the data here
+          })
+          .catch((error) => {
+            console.error('Error:', error);
+          });
+      }, []);
 
   const uniqueCategories = [...new Set(cardData.map((card) => card.category))];
 
