@@ -3,6 +3,7 @@ import Collection from "@/components/Home/Collection";
 import Slider from "./Slider";
 import PopularCategory from "@/components/Home/PopularCategory";
 import CategoriesPage from "@/components/Categories/Categories";
+import Advertise from "@/components/Home/Advertise";
 
 
 
@@ -13,6 +14,7 @@ import CategoriesPage from "@/components/Categories/Categories";
       <Collection />
       <PopularCategory  />
       <CategoriesPage />
+      <Advertise />
     </main>
   );
 }
