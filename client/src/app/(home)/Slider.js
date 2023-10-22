@@ -2,12 +2,10 @@
 
 import { Swiper, SwiperSlide } from "swiper/react";
 
-
-import { Autoplay, EffectFade, Navigation,Pagination } from "swiper/modules";
+import { Autoplay, EffectFade, Navigation, Pagination } from "swiper/modules";
 import "swiper/css/bundle";
 import SingleSlider from "./SingleSlider";
 import sliderData from "../data/sliderData";
-
 
 const Slider = () => {
   return (

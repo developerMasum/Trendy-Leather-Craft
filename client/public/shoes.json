@@ -1,0 +1,74 @@
+
+[
+    {
+      "id": 1,
+      "name": "Running Shoe A",
+      "price": 59.99,
+      "description": "Comfortable running shoe with great support.",
+      "image": "https://img.freepik.com/free-vector/color-sport-sneaker_98292-3191.jpg"
+    },
+    {
+      "id": 2,
+      "name": "Sneaker B",
+      "price": 49.99,
+      "description": "Casual sneaker with a stylish design.",
+      "image": "https://img.freepik.com/free-photo/pair-trainers_144627-3799.jpg"
+    },
+    {
+      "id": 3,
+      "name": "Hiking Boot C",
+      "price": 79.99,
+      "description": "Durable hiking boot for outdoor adventures.",
+      "image": "https://as1.ftcdn.net/v2/jpg/01/98/11/36/1000_F_198113627_E5hQnRt4BsqtRL6N4wiELAS9Y59oYLnc.jpg"
+    },
+    {
+      "id": 4,
+      "name": "Formal Shoe D",
+      "price": 89.99,
+      "description": "Elegant formal shoe for special occasions.",
+      "image": "https://as1.ftcdn.net/v2/jpg/01/21/81/86/1000_F_121818673_6EID5iF76VCCc4aGOLJkd94Phnggre3o.jpg"
+    },
+    {
+      "id": 5,
+      "name": "Athletic Shoe E",
+      "price": 69.99,
+      "description": "High-performance athletic shoe for sports.",
+      "image": "https://as1.ftcdn.net/v2/jpg/01/43/45/78/1000_F_143457845_tdR3QY1Q5Shd3y0SIn6F0hzRLNjETnlC.jpg"
+    },
+    {
+      "id": 6,
+      "name": "Casual Shoe F",
+      "price": 54.99,
+      "description": "Versatile and comfortable everyday shoe.",
+      "image": "https://as2.ftcdn.net/v2/jpg/01/43/45/77/1000_F_143457749_3x7KtQlCL9sDzbRShBAPXLzHrNoZwF7q.jpg"
+    },
+    {
+      "id": 7,
+      "name": "Walking Shoe G",
+      "price": 59.99,
+      "description": "Supportive walking shoe for daily use.",
+      "image": "https://as2.ftcdn.net/v2/jpg/01/43/45/79/1000_F_143457955_eW8iXAu41y7AFDZEAshYR372BAy1IV2n.jpg"
+    },
+    {
+      "id": 8,
+      "name": "Sandal H",
+      "price": 39.99,
+      "description": "Lightweight and comfortable sandal for summer.",
+      "image": "https://as1.ftcdn.net/v2/jpg/01/26/93/26/1000_F_126932691_JvpkxYcMKSuPRjPLxO8spO6PZTzVLAQV.jpg"
+    },
+    {
+      "id": 9,
+      "name": "Dress Shoe I",
+      "price": 74.99,
+      "description": "Stylish dress shoe for formal events.",
+      "image": "https://as1.ftcdn.net/v2/jpg/00/49/00/44/1000_F_49004498_PfmBCbtgnpatzOP4u3G1NAnfmiJwufnA.jpg"
+    },
+    {
+      "id": 10,
+      "name": "Basketball Shoe J",
+      "price": 64.99,
+      "description": "High-top basketball shoe for the court.",
+      "image": "https://as1.ftcdn.net/v2/jpg/00/29/06/02/1000_F_29060226_n7XKIyr1XHCUZIMBf7g2S0Jt1LKgjTlM.jpg"
+    }
+  ]
+

@@ -3,17 +3,17 @@ import Collection from "@/components/Home/Collection";
 import Slider from "./Slider";
 import PopularCategory from "@/components/Home/PopularCategory";
 import CategoriesPage from "@/components/Categories/Categories";
+import CollectionSlider from "@/components/Home/Collection/WinterCollection";
 
-
-
-  const Home =()=> {
+const Home = () => {
   return (
     <main>
       <Slider />
       <Collection />
-      <PopularCategory  />
+      <CollectionSlider />
+      <PopularCategory />
       <CategoriesPage />
     </main>
   );
-}
+};
 export default Home;
